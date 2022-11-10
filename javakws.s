@@ -122,29 +122,8 @@ endif:
 	li	$v0, 0    #return 0
 	jr	$ra 
 
-
 lsearch:
-	li	$t1, 0	#$t1 boolean operator
-	li	$t2, 0	#$t2 index
-	bnez	$t1,	o
-
-lsearch:
-	li	$t0, 0                   # Load 0 into the index
-	j	linearLoop                # Loop
-
-linearLoop:
-	lw	$t1, 0($a0)              # Load the element into t1
-  	beq	$t1, $a1, linearFound   # Found the element
-  	addi $a0, $a0, 4            # Add 4 (1 word index) to the array
-  	addi $t0, $t0, 1            # Add one to the index
-	j 	linearLoop
-
-linearFound:
-	add $v0, $t0, $0            # Move $t0 into $v0
-	jr $ra                      # Return
-
-lsearch:
-            # a0 = keywords[], a1 = length, a2 = inputstring[]
+					# a0 = keywords[], a1 = length, a2 = inputstring[]
 	addiu $sp,$sp,-4    # push(ra) b/c will call a procedure later
 	sw	$ra, 0($sp)
 
